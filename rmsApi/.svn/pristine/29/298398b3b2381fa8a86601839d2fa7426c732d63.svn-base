@@ -1,0 +1,7 @@
+mysql:
+   encrypted.username: cm9vdA==
+   encrypted.password: cm9vdA==
+   url: localhost:3306
+   databaseName: demo
+server:
+   contextPath: /rms/api

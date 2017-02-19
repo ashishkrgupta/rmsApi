@@ -1,0 +1,7 @@
+mysql:
+   encrypted.username: cm1zY3JpbWVnYW5n
+   encrypted.password: Y3JpbWVtYXN0ZXJnb2dv
+   encrypted.url: ODUuMTAuMjA1LjE3MzozMzA2
+   encrypted.databaseName: cm1zYXBp
+server:
+   contextPath: /rms/api

@@ -1,0 +1,5 @@
+mysql:
+   username: root
+   password: root
+server:
+   contextPath: /rms/api

@@ -1,0 +1,49 @@
+package com.ashu.rms.api.controller;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ashu.rms.api.common.model.User;
+
+@Controller
+public class LoginController {
+
+	@Value("${mysql.username}")
+	String dbUser;
+	
+	@Value("${mysql.password}")
+	String pwd;
+	
+	@Value("${mysql.databaseName}")
+	String dbName;
+	
+	@Value("${mysql.url}")
+	String url;
+	
+	@RequestMapping("/test/{name}")
+	@ResponseBody
+	public User test(@PathVariable("name") String name){
+		System.out.println(dbUser );
+		System.out.println(dbName);
+		System.out.println(url);
+		System.out.println(pwd);
+		User user = new User();
+		user.setFirstName(name);
+		user.setLastName(name);
+		user.setUserId(name);
+		return user;
+	}
+	
+	@RequestMapping(path="/login", method=RequestMethod.POST)
+	@ResponseBody
+	//@EnableOAuth2Sso()
+	public User login(){
+		User u = new User();
+		
+		return u;
+	}
+}

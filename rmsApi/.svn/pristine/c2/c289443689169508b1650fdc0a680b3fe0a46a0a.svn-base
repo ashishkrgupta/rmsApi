@@ -1,0 +1,82 @@
+package com.ashu.rms.api.jdbc;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+
+import com.ashu.rms.api.common.exception.DaoException;
+import com.ashu.rms.api.common.model.Application;
+import com.ashu.rms.api.common.model.Entity;
+import com.ashu.rms.api.dao.IDaoCommon;
+
+@Component
+public class JdbcOperations implements IDaoCommon{
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	private final String INSERT_APPLICATION = "insert into application (Name, Description, CreatedBy, CreatedDate, UpdatedBy, UpdatedDate, IsDeleted) "
+			+ "values (?, ?, ?, ?, ?, ?, ?)";
+	private final String SELECT_APPLICATION = "select * from application";
+	
+	@PostConstruct
+	public void initialize(){
+	}
+
+	public void create(Entity entity) throws DaoException {
+		if (entity instanceof Application){
+			createApplication((Application) entity);
+		} else {
+			throw new DaoException("Could not identify the Entity");
+		}
+	}
+
+	private void createApplication(Application entity) {
+	      jdbcTemplate.update( INSERT_APPLICATION, entity.getName(), entity.getDescription(), entity.getCreatedBy(),
+	    		  entity.getCreatedOn(), entity.getUpdatedBy(), entity.getUpdatedOn(), entity.isDeleted());
+	}
+
+	public void createAll(List<Entity> entities) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void delete(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteAll(List<Entity> entities) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void update(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateAll(List<Entity> entities) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<? extends Entity> getEntities( Class<? extends Entity> clazz ) throws DaoException {
+		if (clazz == Application.class){
+			return getApplications();
+		} else {
+			return null;
+		}
+	}
+
+	private List<Application> getApplications() {
+		List<Application> applications = jdbcTemplate.query(SELECT_APPLICATION, RmsRowMapper.getInstance().getApplicationRowMapper());
+		return applications;
+	}
+	
+
+}

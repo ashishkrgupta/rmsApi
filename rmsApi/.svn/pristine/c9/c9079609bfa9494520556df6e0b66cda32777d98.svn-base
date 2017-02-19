@@ -1,0 +1,36 @@
+package com.ashu.rms.api.config;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Component;
+
+@Component
+public class JdbcConfig {
+
+	@Value("${mysql.url}")
+	private String url;
+	
+	@Value("${mysql.username}")
+	private String username;
+	
+	@Value("${mysql.password}")
+	private String password;
+	
+	@Value("${mysql.databaseName}")
+	private String dbName;
+	
+	@Bean
+	public JdbcTemplate jdbcTemplate(){
+		return new JdbcTemplate(getDataSource());
+	}
+
+	@Bean
+	public DataSource getDataSource() {
+		DriverManagerDataSource ds = new DriverManagerDataSource("jdbc:mysql://" + url + "/" + dbName, username, password);
+		return ds;
+	}
+}

@@ -1,0 +1,24 @@
+package com.ashu.rms.api.dao;
+
+import java.util.List;
+
+import com.ashu.rms.api.common.exception.DaoException;
+import com.ashu.rms.api.common.model.Entity;
+
+public interface IDaoCommon {
+	
+	public void create(Entity entity) throws DaoException;
+	
+	public void createAll(List<Entity> entities) throws DaoException;
+	
+	public void delete(Entity entity) throws DaoException;
+	
+	public void deleteAll(List<Entity> entities) throws DaoException;
+	
+	public void update(Entity entity) throws DaoException;
+	
+	public void updateAll(List<Entity> entities) throws DaoException;
+	
+	public List<? extends Entity> getEntities(Class<? extends Entity> clazz) throws DaoException;
+	
+}

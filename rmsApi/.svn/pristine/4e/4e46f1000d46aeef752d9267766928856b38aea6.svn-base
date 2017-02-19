@@ -1,0 +1,21 @@
+package com.ashu.rms.api;
+
+import java.util.Properties;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+
+@SpringBootApplication
+public class RmsApiApplication {
+
+	public static void main(String[] args) {
+		Properties properties = new Properties();
+		properties.put("spring.config.location", "file:/Users/ashu/Documents/config");
+		
+		SpringApplicationBuilder springApplicationBuilder = new SpringApplicationBuilder(RmsApiApplication.class);
+		springApplicationBuilder.sources(RmsApiApplication.class);
+		springApplicationBuilder.properties(properties);
+		springApplicationBuilder.run(args);
+    
+	}
+}

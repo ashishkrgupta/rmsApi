@@ -1,0 +1,50 @@
+package com.ashu.rms.api.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ashu.rms.api.common.model.Application;
+import com.ashu.rms.api.common.model.User;
+import com.ashu.rms.api.dao.CommonDAO;
+
+@RestController
+public class LoginController {
+
+	@Autowired
+	private CommonDAO commonDao;
+	
+	@RequestMapping("/test/{name}")
+	public Object test(@PathVariable("name") String name){
+		try{
+			Application app = new Application();
+			app.setName("1stapp");
+			app.setDescription("");
+			
+			List<Application> list = (List<Application>) commonDao.list(Application.class);// (List<Application>) jdbcOperations.getEntities(Application.class);
+			//jdbcOperations.create(app);
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+//		User user = new User();
+//		user.setFirstName(name);
+//		user.setLastName(name);
+//		user.setUserId(name);
+	}
+	
+	@RequestMapping(path="/login", method=RequestMethod.POST)
+	@ResponseBody
+	//@EnableOAuth2Sso()
+	public User login(){
+		User u = new User();
+		
+		return u;
+	}
+}

@@ -1,0 +1,41 @@
+package com.ashu.rms.api.jdbc;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.ashu.rms.api.common.model.Application;
+import com.ashu.rms.api.common.model.Entity;
+
+public class RmsRowMapper {
+	
+	public static RmsRowMapper getInstance(){
+		return new RmsRowMapper();
+	}
+	
+	public ApplicationRowMapper getApplicationRowMapper(){
+		return new ApplicationRowMapper();
+	}
+	
+	public class ApplicationRowMapper implements org.springframework.jdbc.core.RowMapper<Application> {
+
+		public Application mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Application app = new Application();
+			populateCommonFields(app, rs);
+			
+			app.setDescription(rs.getString("Description"));
+			app.setName(rs.getString("Name"));
+			return app;
+		}
+		
+	}
+	
+	private void populateCommonFields(Entity entity, ResultSet rs) throws SQLException{
+		entity.setId(rs.getInt("ID"));
+		entity.setCreatedBy(rs.getString("CreatedBy"));
+		entity.setCreatedOn(rs.getDate("createdDate"));
+		entity.setDeleted(rs.getBoolean("IsDeleted"));
+		entity.setUpdatedBy(rs.getString("UpdatedBy"));
+		entity.setUpdatedOn(rs.getDate("UpdatedDate"));
+	}
+
+}
