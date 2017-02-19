@@ -19,4 +19,9 @@ public class LoginController {
 	public User getUser(@PathVariable("username") String username, @PathVariable("password") String password){
 		return userService.getUser(username, password);
 	}
+	
+	@RequestMapping(path="/test}", method=RequestMethod.GET)
+	public User test(String password){
+		return null;
+	}
 }
