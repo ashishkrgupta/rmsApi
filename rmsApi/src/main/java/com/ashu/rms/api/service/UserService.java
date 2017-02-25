@@ -4,17 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ashu.rms.api.common.model.User;
-import com.ashu.rms.api.dao.CommonDAO;
+import com.ashu.rms.api.dao.UserDao;
 
 @Service
 public class UserService {
 
+	//@Autowired
+	//private CommonDAO commonDao;
+	
 	@Autowired
-	private CommonDAO commonDao;
+	UserDao userDao;
 
 	public User getUser(String username, String password) {
-		// TODO Auto-generated method stub
-		return new User();
+		return userDao.getUserByUsernameAndPassword(username, password);
 	}
 	
 	

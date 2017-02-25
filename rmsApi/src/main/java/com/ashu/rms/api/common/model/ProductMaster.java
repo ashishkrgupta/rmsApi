@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 public class ProductMaster {
 
 	@Column(name = "id")
+	@Id
 	private int id;
 
 	@Column(name = "name")

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +14,7 @@ public class Store extends CoreEntity {
 	private static final long serialVersionUID = -3158860030261489567L;
 
 	@Column(name = "id")
+	@Id
 	private int id;
 
 	@Column(name = "name")
