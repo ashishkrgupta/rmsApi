@@ -21,6 +21,7 @@ public class UserDao {
 	public User getUserByUsernameAndPassword(String username, String password){
 		User user = null;
 		Session session = sessionFactory.openSession();
+		//session.createSQLQuery("select * from user;").list()
 		//session.get
 		Criteria userCr = session.createCriteria(User.class);
 		userCr.add(Restrictions.eq("userId", username));

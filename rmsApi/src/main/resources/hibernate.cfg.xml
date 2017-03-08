@@ -18,6 +18,7 @@
 		<mapping class="com.ashu.rms.api.common.model.ItemInvoiceMaster"/>
 		<mapping class="com.ashu.rms.api.common.model.ProductMaster"/>
 		<mapping class="com.ashu.rms.api.common.model.Store"/>
+		<mapping class="com.ashu.rms.api.common.model.User"/>
 			
 	</session-factory>
 
