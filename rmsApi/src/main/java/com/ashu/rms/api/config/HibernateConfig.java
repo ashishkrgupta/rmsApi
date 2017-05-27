@@ -1,58 +1,20 @@
 package com.ashu.rms.api.config;
 
-import javax.sql.DataSource;
+import javax.persistence.EntityManagerFactory;
 
-import org.apache.commons.dbcp.BasicDataSource;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HibernateConfig {
-
-	@Value("${mysql.url}")
-	private String url;
-	
-	@Value("${mysql.username}")
-	private String username;
-	
-	@Value("${mysql.password}")
-	private String password;
-	
-	@Value("${mysql.databaseName}")
-	private String dbName;
-
-	@Bean
-	public DataSource getDataSource() {
-		BasicDataSource ds = new BasicDataSource();
-		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		ds.setUrl("jdbc:mysql://" + url + "/" + dbName);
-		ds.setUsername(username);
-		ds.setPassword(password);
-		return ds;
-	}
 	
 	@Bean
-	public SessionFactory sessionFactory(){
-//		Properties hibernateProperties = new Properties();
-//		hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-//		hibernateProperties.put("hibernate.current_session_context_class", "thread");
-//		hibernateProperties.put("show_sql", true);
-//		hibernateProperties.put("hibernate.connection.url", "jdbc:mysql://" + url + "/" + dbName);
-//		hibernateProperties.put("hibernate.connection.username", username);
-//		hibernateProperties.put("hibernate.connection.password", password);
-//		hibernateProperties.put("conncetion.pool_size", 5);
-//		hibernateProperties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-		
-		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");         
-	    StandardServiceRegistryBuilder sb = new StandardServiceRegistryBuilder();
-	    sb.applySettings(cfg.getProperties());
-	    StandardServiceRegistry standardServiceRegistry = sb.build();                   
-	    SessionFactory sessionFactory = cfg.buildSessionFactory(standardServiceRegistry);
-		return sessionFactory;
-	}
+    public HibernateJpaSessionFactoryBean sessionFactory(EntityManagerFactory emf) {
+         HibernateJpaSessionFactoryBean factory = new HibernateJpaSessionFactoryBean();
+         factory.setEntityManagerFactory(emf);
+         return factory;
+    }
+	
+
 }

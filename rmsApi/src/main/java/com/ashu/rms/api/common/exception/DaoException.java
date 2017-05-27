@@ -23,4 +23,17 @@ public class DaoException extends Exception{
 	public DaoException(Throwable cause) {
 		super(cause);
 	}
+	
+	
+	public static void main(String[] args) {
+		StringBuilder sb = new StringBuilder();
+		String[] s = {"a","b","c","d","e","f"};
+		String str = "";
+		for(int i=0; i<s.length;i++){
+			str = str + s[i];
+		}
+		System.out.println(str);
+	}
+	
+	
 }

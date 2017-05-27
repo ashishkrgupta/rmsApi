@@ -25,14 +25,14 @@ import com.ashu.rms.api.config.PropertyPasswordInitializer;
 @ComponentScan
 @SpringBootApplication
 public class RmsApiApplication extends SpringBootServletInitializer {
-
+	final static String CONFIG_LOC = "/Users/ashu/Documents/config/";
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(RmsApiApplication.class);
 		Set<ApplicationContextInitializer<?>> initializers = app.getInitializers();
 		initializers.add(new PropertyPasswordInitializer());
 		app.setInitializers(initializers);
 		Map<String, Object> properties = new HashMap<String, Object>();
-		properties.put("spring.config.location", "/Users/ashu/Documents/config/");
+		properties.put("spring.config.location", CONFIG_LOC);
 		app.setDefaultProperties(properties);
 		ApplicationContext ctx = app.run(args);
 		if (ctx.getEnvironment().getActiveProfiles() != null){
@@ -49,7 +49,7 @@ public class RmsApiApplication extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
 		builder.initializers(new PropertyPasswordInitializer());
 		Map<String, Object> properties = new HashMap<String, Object>();
-		properties.put("spring.config.location", "/Users/ashu/Documents/config/");
+		properties.put("spring.config.location", CONFIG_LOC);
 		builder.properties(properties);
 		return builder.sources(RmsApiApplication.class);
 	}

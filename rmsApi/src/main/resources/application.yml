@@ -1,7 +1,21 @@
-mysql:
-   encrypted.username: cm1zY3JpbWVnYW5n
-   encrypted.password: Y3JpbWVtYXN0ZXJnb2dv
-   encrypted.url: ODUuMTAuMjA1LjE3MzozMzA2
-   encrypted.databaseName: cm1zYXBp
 server:
    contextPath: /rms/api
+spring:
+   datasource:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      encrypted.url: amRiYzpteXNxbDovL2xvY2FsaG9zdDozMzA2L3Jtc2FwaQ==
+      encrypted.username: cm9vdA==
+      encrypted.password:
+   jpa:
+      database-platform: org.hibernate.dialect.MySQLDialect
+      show-sql: false
+      hibernate:
+         ddl-auto: false
+logging:
+   level:
+      org.springframework.web: ERROR
+      com.ashu: INFO
+   pattern:
+      console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+      file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+   file: /Users/ashu/Documents/rms/logs/rms.log
