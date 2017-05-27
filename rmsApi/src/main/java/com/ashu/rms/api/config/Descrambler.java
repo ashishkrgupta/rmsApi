@@ -104,10 +104,4 @@ public class Descrambler {
 		return new String(decode(encoded.getBytes()));
 	}
 	
-	
-	public static void main(String[] args) {
-		System.out.println(encodeString("jdbc:mysql://localhost:3306/rmsapi"));
-		System.out.println(encodeString("root"));
-		System.out.println(decode("ODUuMTAuMjA1LjE3MzozMzA2"));
-	}
 }
